@@ -21,6 +21,7 @@ env:
     # Disable Oracle in the cloud
     - FROM_TRAVIS=true
     - SCOPE_DSN=https://c4f518de879e4811a73e32318f94feb1@app.scope.dev/
+    - SCOPE_LOGGER_LEVEL=info
     
 addons:
   sonarcloud:
