@@ -25,6 +25,10 @@
         </repository>
     </repositories>
     
+    <properties>
+        <scope.agent.version>0.2.4</scope.agent.version>
+    </properties>
+    
     <build>
         <plugins>
 
@@ -63,6 +67,7 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>3.0.0-M4</version>
                 <configuration>
+                    <argLine>-javaagent:${settings.localRepository}/com/undefinedlabs/scope/scope-agent/${scope.agent.version}/scope-agent-${scope.agent.version}.jar</argLine>                
                     <!-- Compatible only jdk > 9 -->
                     <!-- <argLine>-Dnashorn.args=- -no-deprecation-warning</argLine> -->
                     <includes>
@@ -87,6 +92,7 @@
                     </execution>
                 </executions>
                 <configuration>
+                    <argLine>-javaagent:${settings.localRepository}/com/undefinedlabs/scope/scope-agent/${scope.agent.version}/scope-agent-${scope.agent.version}.jar</argLine>
                     <rerunFailingTestsCount>3</rerunFailingTestsCount>
                     <includes>
                         <include>**/*TestSuite.java</include>
@@ -119,6 +125,13 @@
     </dependencyManagement>
 
     <dependencies>
+    
+        <dependency>
+          <groupId>com.undefinedlabs.scope</groupId>
+          <artifactId>scope-agent</artifactId>
+          <version>${scope.agent.version}</version>
+          <scope>provided</scope>
+        </dependency>    
 
         <!-- Spock -->
         <dependency>
